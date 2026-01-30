@@ -1,0 +1,299 @@
+/* Body */
+body {
+  background-color: #0f1115;
+  color: #eaeaea;
+  font-family: 'Orbitron', sans-serif;
+  text-align: center;
+  padding: 350px 20px 50px 20px;
+  margin: 0;
+}
+
+.badge-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 15px;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 100;
+  flex-direction: row;
+  align-items: center;
+}
+
+.badge-label {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 900;
+  font-size: 100px;
+  color: #cccccc;
+  -webkit-text-stroke: 1px #666;
+}
+
+.badge-project-title {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 900;
+  font-size: 90px;
+  color: #cccccc;
+  -webkit-text-stroke: 2px #555;
+  margin: 0;
+  letter-spacing: 2px;
+}
+
+
+.stripes {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  transform: skewY(-20deg) rotate(17deg);
+  transform-origin: center;
+  position: relative;
+  z-index: 1;
+  margin-right: -30px; 
+}
+
+
+.stripe {
+  width: 45px;
+  height: 140px; /* 🔥 was 100px */
+}
+.stripe.blue { background-color: #0066b1; }
+.stripe.darkblue { background-color: #003c71; }
+.stripe.red { background-color: #e21d1d; }
+
+/* Badge text */
+.badge-text {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  position: relative;
+  z-index: 2;
+}
+
+/* M */
+.m-logo {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 900;
+  font-size: 140px;
+  color: #cccccc;
+  margin-left: 0;
+  line-height: 1;
+  letter-spacing: -8px;
+  font-style: italic;
+  -webkit-text-stroke: 2.5px #555;
+}
+
+/* 3 */
+.three {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 900;
+  font-size: 140px;
+  color: #cccccc;
+  margin-left: 0;
+  line-height: 1;
+  font-style: italic;
+  -webkit-text-stroke: 2.5px #555;
+}
+
+/* Rest of title */
+.rest {
+  font-size: 50px;
+  font-weight: 700;
+  color: #ffffff;
+  align-self: flex-end;
+}
+
+/* Navigation */
+nav {
+  margin-bottom: 40px;
+}
+
+nav a {
+  font-family: 'Orbitron', sans-serif;
+  text-decoration: none;
+  margin: 0 15px;
+  font-weight: 900;
+  font-size: 18px;
+  background: linear-gradient(90deg, #0066b1 0%, #003c71 33%, #e21d1d 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  transition: opacity 0.3s ease;
+}
+
+nav a:hover {
+  opacity: 0.8;
+}
+
+/* Paragraphs */
+p {
+  font-size: 18px;
+  margin: 20px 0;
+}
+
+/* Images */
+img {
+  max-width: 100%;
+  height: auto;
+  margin: 20px 0;
+  border-radius: 8px;
+  border: 3px solid #555;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Main content */
+main {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Build Journal layout */
+.build-journal-main {
+  max-width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  padding: 0 50px;
+}
+
+.build-journal-sidebar {
+  width: 250px;
+  text-align: left;
+  padding-right: 40px;
+}
+
+.build-journal-sidebar h2 {
+  font-size: 28px;
+  color: #9cc9ff;
+  margin-bottom: 20px;
+}
+
+.build-journal-sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.build-journal-sidebar li {
+  margin-bottom: 15px;
+}
+
+.build-journal-sidebar a {
+  color: inherit;
+  text-decoration: none;
+  font-size: 16px;
+  transition: opacity 0.3s ease;
+}
+
+.build-journal-sidebar a:hover {
+  opacity: 0.8;
+}
+
+/* Post page styles */
+.post {
+  margin-top: 30px;
+  text-align: left;
+}
+
+.project-title {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 900;
+  font-size: 60px;
+  color: #cccccc;
+  -webkit-text-stroke: 2px #555;
+  margin-bottom: 40px;
+  letter-spacing: 2px;
+}
+
+/* Small badge for homepage content */
+.badge-container-small {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.badge-label-small {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 900;
+  font-size: 120px;
+  color: #cccccc;
+  -webkit-text-stroke: 1px #666;
+}
+
+.stripes-small {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+  margin-right: 0;
+  height: 100px;
+}
+
+.stripe {
+  width: 35px;
+  height: 100px;
+}
+
+.badge-text-small {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  position: relative;
+  z-index: 2;
+}
+
+.m-logo-small {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 900;
+  font-size: 140px;
+  color: #cccccc;
+  margin-left: 0;
+  line-height: 1;
+  letter-spacing: -8px;
+  font-style: italic;
+  -webkit-text-stroke: 2.5px #555;
+}
+
+.three-small {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 900;
+  font-size: 140px;
+  color: #cccccc;
+  margin-left: 0;
+  line-height: 1;
+  font-style: italic;
+  -webkit-text-stroke: 2.5px #555;
+}
+
+.badge-subtitle {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 24px;
+  color: #9cc9ff;
+  margin: 20px 0 30px 0;
+  letter-spacing: 1px;
+  font-weight: 700;
+}
+
+.badge-prefix {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 32px;
+  color: #9cc9ff;
+  margin: 0 0 10px 0;
+  letter-spacing: 2px;
+  font-weight: 700;
+}
+
+.post h2 {
+  font-size: 36px;
+  color: #9cc9ff;
+  margin-bottom: 10px;
+}
+
+.post .date {
+  color: #888;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
