@@ -44,7 +44,7 @@ body {
   display: flex;
   flex-direction: row;
   gap: 8px;
-  transform: skewY(-20deg) rotate(17deg);
+  transform: skewY(-20deg) rotate(20deg);
   transform-origin: center;
   position: relative;
   z-index: 1;
@@ -54,7 +54,7 @@ body {
 
 .stripe {
   width: 45px;
-  height: 140px; /* 🔥 was 100px */
+  height: 140px; 
 }
 .stripe.blue { background-color: #0066b1; }
 .stripe.darkblue { background-color: #003c71; }
