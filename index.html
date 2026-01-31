@@ -5,29 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>E36 M3 Journey</title>
 
-  <!-- Google Font for blocky badge-like style -->
+  <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="css/styles.css">
-
-  <style>
-    /* Car age counter */
-    .car-age {
-      margin-top: 25px;
-      text-align: center;
-      font-family: 'Orbitron', sans-serif;
-      font-size: 1.2rem;
-      letter-spacing: 1px;
-      color: #111;
-    }
-
-    .car-age span {
-      display: inline-block;
-      padding: 10px 18px;
-      border: 2px solid #000;
-      background: #f5f5f5;
-    }
-  </style>
 </head>
 
 <body>
@@ -46,11 +27,6 @@
     </div>
   </div>
 
-  <!-- Car Age Counter -->
-  <div class="car-age">
-    <span id="carAge">Loading...</span>
-  </div>
-
   <!-- Navigation -->
   <nav>
     <a href="index.html">Home</a>
@@ -61,39 +37,13 @@
 
   <!-- Main content -->
   <main>
-    <p>This website is dedicated to documenting my BMW E36 M3 project and experiences.</p>
-    <p>Use the navigation above to explore the build journal (modifications), maintenance, and cosmetic upkeep!</p>
+    <p>
+      Welcome! You've reached Peyton Chen's E36 M3 blog, in which you'll discover information regarding my personal journey to maintaining and enjoying this mechanical soul of the late 90s.
+    </p>
+    <p>
+      Use the navigation above to explore the build journal (modifications), maintenance, and cosmetic upkeep.
+    </p>
   </main>
-
-
-  <script>
-    function updateCarAge() {
-
-      const buildDate = new Date(1997, 8, 17);
-      const now = new Date();
-
-      let years = now.getFullYear() - buildDate.getFullYear();
-      let months = now.getMonth() - buildDate.getMonth();
-      let days = now.getDate() - buildDate.getDate();
-
-      if (days < 0) {
-        months--;
-        const previousMonth = new Date(now.getFullYear(), now.getMonth(), 0);
-        days += previousMonth.getDate();
-      }
-
-      if (months < 0) {
-        years--;
-        months += 12;
-      }
-
-      document.getElementById("carAge").textContent =
-        `${years} years, ${months} months, ${days} days old`;
-    }
-
-    updateCarAge();
-    setInterval(updateCarAge, 1000 * 60 * 60);
-  </script>
 
 </body>
 </html>
