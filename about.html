@@ -3,13 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About - E36 M3 </title>
-  
-  <!-- Google Font for blocky badge-like style -->
+  <title>About - E36 M3</title>
+
+  <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&display=swap" rel="stylesheet">
-  
+
   <link rel="stylesheet" href="css/styles.css">
 </head>
+
 <body>
 
   <!-- BMW M3 Badge -->
@@ -22,7 +23,7 @@
     <div class="badge-text">
       <span class="m-logo">M</span>
       <span class="three">3</span>
-      <span class="rest"> </span>
+      <span class="rest"></span>
     </div>
   </div>
 
@@ -38,21 +39,52 @@
   <main>
     <p class="badge-subtitle">E30 M3 X E34 M5 = E36 M3</p>
     <h2>About PROJECT E30XE34</h2>
-    <p>
-      The BMW E36 M3 is an iconic sports car that represents a golden era of automotive engineering. 
-      This project documents my personal journey with an E36 M3, including restoration efforts, 
-      performance modifications, and the challenges and triumphs along the way.
+
+    <p id="ageStory">
+      As you're reading this, this M3 is loading its story...
     </p>
+
     <p>
-      The E36 chassis (1992-1999) is known for its balanced handling, responsive steering, and the legendary 
-      3.2L naturally aspirated S52 engine that produces 325 horsepower. It's a car that connects with drivers 
-      on a mechanical level, requiring skill and attention to extract its full potential.
-    </p>
-    <p>
-      Through this site, I share insights, build updates, technical tips, and the passion that drives 
-      enthusiasts like myself to keep these mechanical masterpieces alive and thriving on the road.
+      Optioned by Sandy Sansing in AlpineWeiss and full Nappa Grey leather, this M3 has aged like fine wine.
+      The Style 39 wheels perfectly complement the lines of the sedan chassis.
+      The car's soul is truly found in the 5-speed manual transmission.
     </p>
   </main>
+
+  <!-- Age + Story Script -->
+  <script>
+    function updateCarStory() {
+      const buildDate = new Date(1997, 8, 17); // September 17, 1997
+      const now = new Date();
+
+      let years = now.getFullYear() - buildDate.getFullYear();
+      let months = now.getMonth() - buildDate.getMonth();
+      let days = now.getDate() - buildDate.getDate();
+
+      if (days < 0) {
+        months--;
+        const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+        days += prevMonth.getDate();
+      }
+
+      if (months < 0) {
+        years--;
+        months += 12;
+      }
+
+      document.getElementById("ageStory").textContent =
+        `As you're reading this, this M3 is ${years} years, ${months} months, and ${days} days old. 
+Born on the 17th of September in 1997 in the BMW factory of Greer, South Carolina, this E36 didn't stay at the factory for long. 
+Loaded onto a truck and hauled down to Sandy Sansing BMW in Pensacola, she sat in the showroom until a young guy finally took her home.
+
+She spent the first decade living the easy life in the Florida sun—no salt, no snow. Eventually, she was relocated north to Illinois, 
+surviving the Midwest winters until 2016, when she headed west to Bellevue. In 2025, we became the next chapter. 
+It took nearly thirty years and a trip across the entire country to get to our driveway, and here we are.`;
+    }
+
+    updateCarStory();
+    setInterval(updateCarStory, 1000 * 60 * 60);
+  </script>
 
 </body>
 </html>
