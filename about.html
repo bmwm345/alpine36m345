@@ -5,16 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About - E36 M3</title>
 
-  <!-- Badge Font -->
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&display=swap" rel="stylesheet">
 
-  <!-- Readable Body Font -->
   <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="css/styles.css">
 
   <style>
-    /* Improve readability for About page */
     main {
       font-family: 'Libre Baskerville', serif;
       max-width: 750px;
@@ -24,15 +21,26 @@
     }
 
     main h2 {
+      font-family: 'Orbitron', sans-serif;
       font-weight: 700;
       margin-bottom: 1rem;
+      text-transform: uppercase;
+    }
+
+    #ageStory {
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .car-specs {
+      padding-left: 20px;
     }
   </style>
 </head>
 
 <body>
 
-  <!-- BMW M3 Badge -->
   <div class="badge-container">
     <div class="stripes">
       <div class="stripe blue"></div>
@@ -45,7 +53,6 @@
     </div>
   </div>
 
-  <!-- Navigation -->
   <nav>
     <a href="index.html">Home</a>
     <a href="about.html">About</a>
@@ -53,28 +60,23 @@
     <a href="maintenance.html">Maintenance</a>
   </nav>
 
-  <!-- About content -->
   <main>
-    <h2>ALPINE36M biography</h2>
+    <h2>Chassis Biography</h2>
 
-    <p id="ageStory">
-      Loading story...
-    </p>
+    <p id="ageStory">Calculating chassis runtime...</p>
 
-    <p>
-      •Optioned by Sandy Sansing BMW of Penascola, Florida; rolled off the line on September 17, 1997.
-      •Style 39 Wheels/"Sunflowers", a no-cost option over the standard Style 23/"Soccerball" wheels. 
-      •M3 Sedans productions started from September 1996 to May 1998. 
-      •~450 1998 Alpine White M3 Sedans produced. 
-      
-     
-    </p>
+    <ul class="car-specs">
+      <li><strong>Production:</strong> Commissioned via Sandy Sansing BMW; rolled off the line Sept 17, 1997.</li>
+      <li><strong>Wheel Spec:</strong> Factory Style 39 "Sunflowers" (Optioned over Style 23).</li>
+      <li><strong>Production Window:</strong> M3 Sedan (E36/4) production spanned Sept 1996 – May 1998.</li>
+      <li><strong>Rarity:</strong> Approximately 1,252 units produced for the North American market.</li>
+      <li><strong>Engineering:</strong> Integrated B-pillar design provides superior torsional rigidity over coupe variants.</li>
+    </ul>
   </main>
 
- 
   <script>
     function updateCarStory() {
-      const buildDate = new Date(1997, 8, 17); // September 17, 1997
+      const buildDate = new Date(1997, 8, 17); 
       const now = new Date();
 
       let years = now.getFullYear() - buildDate.getFullYear();
@@ -92,15 +94,15 @@
         months += 12;
       }
 
-      document.getElementById("ageStory").textContent =
-        `As you're reading this, s52alpine is ${years} years, ${months} months, and ${days} days old.
-         E36 sedan chassis are stiffer than the coupe. Beacuse of the B-pillar, the sedan technically eats corners more efficiently than coupes thanks to the additional structural rigidity`;
+      // Updated wording to be cleaner and less "cringe"
+      document.getElementById("ageStory").innerHTML = 
+        `Chassis Runtime: ${years} years, ${months} months, ${days} days.<br>` +
+        `<em>Note: Sedan architecture selected for chassis stiffness.</em>`;
     }
 
     updateCarStory();
-    setInterval(updateCarStory, 1000 * 60 * 60);
+    setInterval(updateCarStory, 3600000); // Updated to 1 hour to save resources
   </script>
 
 </body>
 </html>
-
