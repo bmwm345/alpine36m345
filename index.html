@@ -11,51 +11,64 @@
   <link rel="stylesheet" href="css/styles.css">
 
   <style>
-    body {
-      background-color: #121212;
-      color: #ffffff;
-      margin: 0;
-      padding: 0;
-      overflow-x: hidden; 
-    }
+  body {
+    background-color: #121212;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; 
+  }
 
-    /* Override the stubborn logo behavior */
-    .badge-container {
-      position: relative !important; /* Forces it to stay in the scroll flow */
-      top: 0 !important;
-      left: 0 !important;
-      transform: none !important;
-      margin: 40px auto 20px auto; /* Centers it with space around it */
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+  /* Force the badge to stay in a neat, scrollable box at the top */
+  .badge-container {
+    position: relative !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    height: 300px; /* This limits how much space that giant logo takes */
+    margin: 0 auto !important;
+    padding: 20px 0;
+    transform: none !important;
+    top: 0 !important;
+    left: 0 !important;
+  }
 
-    /* Nav now sits naturally below the logo */
-    nav {
-      margin-top: 20px; 
-      text-align: center;
-      position: relative;
-      z-index: 10;
-    }
+  /* Fixes the spacing for the text inside the badge if it's acting up */
+  .badge-text, .badge-label {
+    display: block !important;
+    text-align: center;
+  }
 
-    main {
-      font-family: 'Libre Baskerville', serif;
-      max-width: 90%; 
-      width: 700px;
-      margin: 40px auto; 
-      line-height: 1.7;
-      font-size: 1.1rem;
-      text-align: center;
-      word-wrap: break-word;
-      overflow-wrap: break-word;
-    }
+  nav {
+    text-align: center;
+    margin-bottom: 50px;
+    position: relative;
+    z-index: 10;
+  }
 
-    p {
-      margin-bottom: 20px;
-      white-space: normal; 
-    }
-  </style>
+  nav a {
+    margin: 0 15px;
+    text-decoration: none;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.9rem;
+    transition: 0.3s;
+  }
+
+  main {
+    font-family: 'Libre Baskerville', serif;
+    max-width: 800px;
+    width: 90%;
+    margin: 0 auto 100px auto;
+    line-height: 1.8;
+    font-size: 1.1rem;
+    text-align: center;
+  }
+
+  p {
+    margin-bottom: 25px;
+  }
+</style>
 </head>
 
 <body>
