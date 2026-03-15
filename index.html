@@ -19,14 +19,20 @@
       overflow-x: hidden; 
     }
 
+    /* This pushes the Navigation menu down below the large logo */
+    nav {
+      margin-top: 180px; /* Adjust this number if it's still too high */
+      text-align: center;
+      position: relative;
+      z-index: 10;
+    }
+
     main {
       font-family: 'Libre Baskerville', serif;
       max-width: 90%; 
       width: 700px;
-      /* The first value (250px) pushes the text down 
-         so it doesn't get covered by the badge.
-      */
-      margin: 250px auto 40px auto; 
+      /* Now we only need a small margin because the nav is pushing it down */
+      margin: 40px auto; 
       line-height: 1.7;
       font-size: 1.1rem;
       text-align: center;
@@ -37,13 +43,6 @@
     p {
       margin-bottom: 20px;
       white-space: normal; 
-    }
-
-    /* Ensuring the nav stays visible and centered */
-    nav {
-      position: relative;
-      z-index: 20;
-      margin-top: 20px;
     }
   </style>
 </head>
