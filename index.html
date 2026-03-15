@@ -19,9 +19,21 @@
       overflow-x: hidden; 
     }
 
-    /* This pushes the Navigation menu down below the large logo */
+    /* Override the stubborn logo behavior */
+    .badge-container {
+      position: relative !important; /* Forces it to stay in the scroll flow */
+      top: 0 !important;
+      left: 0 !important;
+      transform: none !important;
+      margin: 40px auto 20px auto; /* Centers it with space around it */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Nav now sits naturally below the logo */
     nav {
-      margin-top: 180px; /* Adjust this number if it's still too high */
+      margin-top: 20px; 
       text-align: center;
       position: relative;
       z-index: 10;
@@ -31,7 +43,6 @@
       font-family: 'Libre Baskerville', serif;
       max-width: 90%; 
       width: 700px;
-      /* Now we only need a small margin because the nav is pushing it down */
       margin: 40px auto; 
       line-height: 1.7;
       font-size: 1.1rem;
@@ -71,29 +82,35 @@
 
   <main>
     <p>
-        My account of the maintenance performed on my 1998 M3/4/5.
-        Yes, it has four doors. No, it's not a "family car."
-        In 1995, after retiring the E34 M5, BMW faced a
-        void in their high-performance executive lineup. To bridge
-        the gap between the E34 M5 and the next M5 (which would only start in late 1998),
-        BMW needed something capable of filling the E34's shoes
-        while restoring the reputation of both the M3 and the
-        ///M division.
-        Despite heavy investment in the US during the 1980s,
-        the E30 M3 flopped. Consequently, BMW detuned
-        the North American E36 M3 so that if it failed to capture
-        the market like the E30 M3, it wouldn't set them back as much as the E30 did. 
-        As a result, the suits in Munich gave the E36 M3 two extra doors and a heavy dose of corporate plausible deniability.
-        To their surprise, the E36 M3 did
-        exceedingly well, and so did the succeeding generations of the M3 that followed the E36. 
-
-      
-          
+      My account of the maintenance performed on my 1998 M3/4/5.  
+      Yes, it has four doors. No, it's not a "family car."
     </p>
 
     <p>
-      Use the navigation above to explore the build journal (modifications), maintenance, and cosmetic upkeep.
+      In 1995, after retiring the E34 M5, BMW faced a  
+      void in their high-performance executive lineup. To bridge  
+      the gap between the E34 M5 and the next M5 (which would only start in late 1998),  
+      BMW needed something capable of filling the E34's shoes  
+      while restoring the reputation of both the M3 and the  
+      ///M division.
     </p>
+
+    <p>
+      Despite heavy investment in the US during the 1980s,  
+      the E30 M3 flopped. Consequently, BMW detuned  
+      the North American E36 M3 so that if it failed to capture  
+      the market like the E30 M3, it wouldn't set them back as much as the E30 did. 
+    </p>
+
+    <p>
+      As a result, the suits in Munich gave the E36 M3 two  
+      extra doors and a heavy dose of corporate plausible deniability.  
+      To their surprise, the E36 M3 did exceedingly well, and so did the  
+      succeeding generations of the M3 that followed the E36. 
+    </p>
+
+  
+   
   </main>
 
 </body>
