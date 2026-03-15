@@ -21,15 +21,35 @@
 
     /* Horizontal, scroll-friendly logo alignment */
    /* This brings the stripes and M3 back together in a tight group */
+/* Keeps the whole unit perfectly centered in the middle of the screen */
     .badge-container {
       position: relative !important;
-      display: inline-flex !important; /* Shrinks the container to fit the content */
+      display: flex !important;
       flex-direction: row !important;
       align-items: center !important;
       justify-content: center !important;
       margin: 60px auto 20px auto !important;
-      left: 50% !important;
-      transform: translateX(-50%) !important; /* Perfectly centers the tight badge */
+      width: 100% !important;
+      top: 0 !important;
+      left: 0 !important;
+      transform: none !important;
+    }
+
+    /* This pulls the M3 closer to the stripes */
+    .stripes {
+      display: flex !important;
+      margin-right: -15px !important; /* Negative margin pulls the M toward the stripes */
+      z-index: 1;
+    }
+
+    /* Ensures the M3 text is layered correctly */
+    .badge-text {
+      position: relative;
+      z-index: 2;
+    }
+
+    .badge-label {
+      display: none !important;
     }
 
     /* Controls the exact gap between the stripes and the M */
