@@ -11,33 +11,39 @@
   <link rel="stylesheet" href="css/styles.css">
 
   <style>
-    /* Global fixes for the horizontal scroll issue */
     body {
       background-color: #121212;
       color: #ffffff;
       margin: 0;
       padding: 0;
-      /* Prevents the whole page from shaking/scrolling sideways */
       overflow-x: hidden; 
     }
 
     main {
       font-family: 'Libre Baskerville', serif;
-      /* Standard reading width */
       max-width: 90%; 
       width: 700px;
-      margin: 40px auto;
+      /* The first value (250px) pushes the text down 
+         so it doesn't get covered by the badge.
+      */
+      margin: 250px auto 40px auto; 
       line-height: 1.7;
       font-size: 1.1rem;
-      /* This is the magic line that forces text to wrap up/down */
+      text-align: center;
       word-wrap: break-word;
       overflow-wrap: break-word;
     }
 
     p {
       margin-bottom: 20px;
-      /* Ensures no weird 'no-wrap' behavior is inherited */
       white-space: normal; 
+    }
+
+    /* Ensuring the nav stays visible and centered */
+    nav {
+      position: relative;
+      z-index: 20;
+      margin-top: 20px;
     }
   </style>
 </head>
