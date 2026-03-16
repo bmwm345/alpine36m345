@@ -42,7 +42,6 @@
       z-index: 1;
     }
 
-    /* Ensures the M3 text is layered correctly */
     .badge-text {
       position: relative;
       z-index: 2;
@@ -68,7 +67,7 @@
       margin-right: 15px;
     }
 
-    /* Hide the E36 label to match the index page */
+   
     .badge-label {
       display: none !important;
     }
@@ -87,7 +86,7 @@
       line-height: 1.7;
       font-size: 1rem;
       color: #ffffff;
-      text-align: center; /* Centered to match the index vibe */
+      text-align: center; 
     }
 
     main h2 {
@@ -145,11 +144,13 @@
     <p id="ageStory">Calculating chassis runtime...</p>
 
     <ul class="car-specs">
-      <li> Optioned via Sandy Sansing BMW; rolled off the line Wednesday Sept 17, 1997.</li>
-      <li> Factory Style 39 "Sunflowers". Weight: ~22 lbs (Optioned over Style 23 Soccerball Wheels).</li>
-      <li> M3 Sedan production spanned Sept 1996 – May 1998, compared to Coupes which were produced from 1992 to 1999.</li>
+      <li> Optioned via Sandy Sansing BMW of Penascola, Florida; rolled off the line Wednesday Sept 17, 1997 in Greer, S.C.</li>
+      <li> Florida -> Alabama -> Illinois -> Washington </li>
+      <li> Factory Style 39 "Sunflowers". Aluminum alloy composition, weighing in at about 22ish lbs (Optioned over Style 23 Soccerball Wheels).</li>
+      <li> OG Alpine White (0300) skin with symptoms of eczma (orange peeling) </li>
+       <li> M3 Sedan production: Sept 1996 – May 1998 </li>
       <li> Approximately 1,200 M3 Sedans produced for the North American market.</li>
-      <li> B-pillar design provides superior rigidity over coupe variants; hence the usage of the sedan body style in DTM racing.</li>
+      
     </ul>
   </main>
 
@@ -175,7 +176,7 @@
 
       document.getElementById("ageStory").innerHTML = 
         `Chassis AGE: ${years} years, ${months} months, ${days} days.<br>` +
-        `<em>Sedan architecture selected for chassis stiffness. IYKYK... </em>`;
+        `<em>sedan > coupe✊🏽; IYKYK... </em>`;
     }
 
     updateCarStory();
