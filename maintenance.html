@@ -6,14 +6,89 @@
   <title>Maintenance - E36 M3 Journey</title>
   
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
   
   <link rel="stylesheet" href="css/styles.css">
+
+  <style>
+    body {
+      background-color: #121212;
+      color: #ffffff;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden; 
+    }
+
+    /* Fixed Tight-Spacing Badge */
+    .badge-container {
+      position: relative !important;
+      display: flex !important;
+      flex-direction: row !important;
+      align-items: center !important;
+      justify-content: center !important;
+      margin: 60px auto 20px auto !important;
+      width: 100% !important;
+    }
+
+    .stripes {
+      display: flex !important;
+      margin-right: -15px !important; /* Pulls M closer to stripes */
+      z-index: 1;
+    }
+
+    .badge-text {
+      position: relative;
+      z-index: 2;
+    }
+
+    .badge-label {
+      display: none !important; /* Removes E36 label */
+    }
+
+    nav {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    main {
+      font-family: 'Libre Baskerville', serif;
+      max-width: 800px;
+      width: 90%;
+      margin: 0 auto 100px auto;
+      text-align: center;
+    }
+
+    h2 {
+      font-family: 'Orbitron', sans-serif;
+      text-transform: uppercase;
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: 15px;
+      font-size: 1.1rem;
+    }
+
+    li a {
+      color: #3498db; /* BMW Blue color for links */
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    li a:hover {
+      color: #e74c3c; /* BMW Red on hover */
+    }
+  </style>
 </head>
 <body>
 
-  <!-- BMW M3 Badge -->
   <div class="badge-container">
-    <div class="badge-label">E36</div>
     <div class="stripes">
       <div class="stripe blue"></div>
       <div class="stripe darkblue"></div>
@@ -25,23 +100,20 @@
     </div>
   </div>
 
-  <!-- Navigation -->
   <nav>
     <a href="index.html">Home</a>
     <a href="about.html">About</a>
     <a href="maintenance.html">Maintenance</a>
     <a href="build-journal.html">Build Journal</a>
-
   </nav>
 
-  <!-- Post content -->
-  <main class="build-journal-main">
-    <aside class="build-journal-sidebar">
-      <h2>Maintenance Schedule</h2>
-      <ul>
-        <li><a href="posts/spark-plugs.html">Spark Plug Replacement: March 12, 2026, 166,500 miles. </a></li>
-      </ul>
-    </aside>
+  <main>
+    <h2>Maintenance Schedule</h2>
+    <ul>
+      <li>
+        <a href="spark-plugs.html">Spark Plug Replacement: March 12, 2026.</a>
+      </li>
+    </ul>
   </main>
 
 </body>
