@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skin Makeover</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    body { background-color: #121212; color: #ffffff; margin: 0; padding: 0; overflow-x: hidden; }
+    
+    .badge-container {
+      position: relative !important;
+      display: flex !important;
+      flex-direction: row !important;
+      align-items: center !important;
+      justify-content: center !important;
+      margin: 60px auto 20px auto !important;
+    }
+
+    .stripes {
+      display: flex !important;
+      margin-right: -15px !important; /* The tight spacing fix */
+      z-index: 1;
+    }
+
+    .badge-text { position: relative; z-index: 2; }
+    .badge-label { display: none !important; }
+
+    nav { text-align: center; margin-bottom: 60px; }
+    
+    main {
+      font-family: 'Libre Baskerville', serif;
+      max-width: 700px;
+      width: 90%;
+      margin: 0 auto 100px auto;
+      line-height: 1.8;
+      text-align: center;
+    }
+
+    h2 { font-family: 'Orbitron', sans-serif; text-transform: uppercase; }
+  </style>
+</head>
+<body>
+
+  <div class="badge-container">
+    <div class="stripes">
+      <div class="stripe blue"></div>
+      <div class="stripe darkblue"></div>
+      <div class="stripe red"></div>
+    </div>
+    <div class="badge-text">
+      <span class="m-logo">M</span>
+      <span class="three">3</span>
+    </div>
+  </div>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="build-journal.html">Build Journal</a>
+    <a href="maintenance.html">Maintenance</a>
+  </nav>
+
+  <main>
+    <h2>Spark Plug R&R @ 166,362 MILES</h2>
+    <p>
+     
+    <p>
+      <strong>Date: March 12, 2026. 
+      <strong>Mileage: 166,362 mies.
+    </p>
+  </main>
+
+</body>
+</html>
