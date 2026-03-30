@@ -9,7 +9,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
   
   <link rel="stylesheet" href="css/styles.css">
-
   <style>
     body {
       background-color: #121212;
@@ -18,8 +17,6 @@
       padding: 0;
       overflow-x: hidden; 
     }
-
-    /* Fixed Tight-Spacing Badge */
     .badge-container {
       position: relative !important;
       display: flex !important;
@@ -29,27 +26,22 @@
       margin: 60px auto 20px auto !important;
       width: 100% !important;
     }
-
     .stripes {
       display: flex !important;
-      margin-right: -15px !important; /* Pulls M closer to stripes */
+      margin-right: -15px !important;
       z-index: 1;
     }
-
     .badge-text {
       position: relative;
       z-index: 2;
     }
-
     .badge-label {
-      display: none !important; /* Removes E36 label */
+      display: none !important;
     }
-
     nav {
       text-align: center;
       margin-bottom: 60px;
     }
-
     main {
       font-family: 'Libre Baskerville', serif;
       max-width: 800px;
@@ -57,37 +49,35 @@
       margin: 0 auto 100px auto;
       text-align: center;
     }
-
     h2 {
       font-family: 'Orbitron', sans-serif;
       text-transform: uppercase;
       font-size: 1.5rem;
       margin-bottom: 20px;
     }
-
     ul {
       list-style: none;
       padding: 0;
+      display: flex;
+      flex-direction: column; /* Forces items to stack vertically */
+      align-items: center;
     }
-
     li {
       margin-bottom: 15px;
       font-size: 1.1rem;
+      width: 100%;
     }
-
     li a {
-      color: #3498db; /* BMW Blue color for links */
+      color: #3498db;
       text-decoration: none;
       transition: 0.3s;
     }
-
     li a:hover {
-      color: #e74c3c; /* BMW Red on hover */
+      color: #e74c3c;
     }
   </style>
 </head>
 <body>
-
   <div class="badge-container">
     <div class="stripes">
       <div class="stripe blue"></div>
@@ -99,15 +89,13 @@
       <span class="three">3</span>
     </div>
   </div>
-
   <nav>
     <a href="index.html">Home</a>
     <a href="about.html">About</a>
     <a href="maintenance.html">Maintenance</a>
     <a href="build-journal.html">Build Journal</a>
   </nav>
-
-<main>
+  <main>
     <h2>Maintenance Schedule</h2>
     <ul>
       <li>
@@ -118,6 +106,5 @@
       </li>
     </ul>
   </main>
-
 </body>
 </html>
