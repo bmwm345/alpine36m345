@@ -3,11 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>E36 M3 Journey</title>
+  <title>Maintenance — E36 M3</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Cormorant+Garant:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Rajdhani:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
       --black:      #080808;
       --surface:    #111;
@@ -23,479 +22,188 @@
       --m-dark:     #0a3a7a;
       --m-red:      #c0392b;
     }
-
     html { scroll-behavior: smooth; }
+    body { background: var(--black); color: var(--text); font-family: 'Cormorant Garant', serif; font-size: 1.1rem; line-height: 1.8; overflow-x: hidden; }
 
-    body {
-      background: var(--black);
-      color: var(--text);
-      font-family: 'Cormorant Garant', serif;
-      font-size: 1.1rem;
-      line-height: 1.8;
-      overflow-x: hidden;
-    }
-
-    /* ─── FIXED TOP-LEFT BADGE ─── */
-    .fixed-badge {
-      position: fixed;
-      top: 20px;
-      left: 28px;
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      opacity: 1;
-      transition: opacity 0.3s;
-    }
-
-    .fixed-badge .stripes {
-      display: flex;
-      gap: 2px;
-    }
-
-    .fixed-badge .stripe {
-      width: 4px;
-      height: 28px;
-      border-radius: 1px;
-    }
-
+    /* Fixed badge */
+    .fixed-badge { position: fixed; top: 20px; left: 28px; z-index: 1000; display: flex; align-items: center; gap: 6px; }
+    .fixed-badge .stripes { display: flex; gap: 2px; }
+    .fixed-badge .stripe { width: 4px; height: 28px; border-radius: 1px; }
     .fixed-badge .stripe.blue     { background: var(--m-blue); }
     .fixed-badge .stripe.darkblue { background: var(--m-dark); }
     .fixed-badge .stripe.red      { background: var(--m-red); }
+    .fixed-badge .badge-text { display: flex; align-items: baseline; filter: drop-shadow(0 0 12px rgba(192,57,43,0.4)); }
+    .fixed-badge .m-logo, .fixed-badge .three { font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 1.6rem; color: #fff; letter-spacing: -0.02em; text-shadow: 0 0 20px rgba(255,255,255,0.2), 0 2px 6px rgba(0,0,0,0.9); }
 
-    .fixed-badge .badge-text {
-      display: flex;
-      align-items: baseline;
-      line-height: 1;
-      filter: drop-shadow(0 0 12px rgba(192,57,43,0.4));
-    }
-
-    .fixed-badge .m-logo,
-    .fixed-badge .three {
-      font-family: 'Orbitron', sans-serif;
-      font-weight: 900;
-      font-size: 1.6rem;
-      color: #fff;
-      letter-spacing: -0.02em;
-      text-shadow: 0 0 20px rgba(255,255,255,0.2), 0 2px 6px rgba(0,0,0,0.9);
-    }
-
-    /* ─── STICKY NAV (appears on scroll) ─── */
-    .sticky-nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 999;
-      background: rgba(8,8,8,0.95);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      justify-content: center;
-      padding: 0 20px;
-      transform: translateY(-100%);
-      transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
-    }
-
-    .sticky-nav.visible {
-      transform: translateY(0);
-    }
-
-    .sticky-nav::after {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0;
-      width: 100%; height: 2px;
-      background: linear-gradient(90deg, var(--m-blue) 0%, var(--m-dark) 33%, var(--m-red) 66%, transparent 100%);
-    }
-
-    .sticky-nav a {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--dim);
-      text-decoration: none;
-      padding: 20px 24px;
-      position: relative;
-      transition: color 0.25s;
-      margin-left: 80px; /* offset so links aren't hidden behind badge */
-    }
-
+    /* Sticky nav */
+    .sticky-nav { position: fixed; top: 0; left: 0; width: 100%; z-index: 999; background: rgba(8,8,8,0.95); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); display: flex; justify-content: center; padding: 0 20px; transform: translateY(-100%); transition: transform 0.4s cubic-bezier(0.4,0,0.2,1); }
+    .sticky-nav.visible { transform: translateY(0); }
+    .sticky-nav::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 2px; background: linear-gradient(90deg, var(--m-blue) 0%, var(--m-dark) 33%, var(--m-red) 66%, transparent 100%); }
+    .sticky-nav a { font-family: 'Rajdhani', sans-serif; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--dim); text-decoration: none; padding: 20px 24px; position: relative; transition: color 0.25s; }
     .sticky-nav a:first-child { margin-left: 80px; }
-
-    .sticky-nav a::after {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 50%;
-      transform: translateX(-50%);
-      width: 0; height: 2px;
-      background: var(--red-bright);
-      transition: width 0.3s;
-    }
-
+    .sticky-nav a::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 0; height: 2px; background: var(--red-bright); transition: width 0.3s; }
     .sticky-nav a:hover { color: #fff; }
     .sticky-nav a:hover::after { width: 60%; }
     .sticky-nav a.active { color: #fff; }
     .sticky-nav a.active::after { width: 60%; background: var(--red); }
 
-    /* ─── HERO BANNER ─── */
-    .hero {
-      position: relative;
-      width: 100%;
-      height: 100vh;
-      min-height: 600px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
+    /* Hero banner */
+    .hero { position: relative; width: 100%; height: 65vh; min-height: 420px; display: flex; align-items: flex-end; justify-content: center; overflow: hidden; }
+    .hero-bg { position: absolute; inset: 0; background: linear-gradient(135deg, #0a0a0a 0%, #0f1a2e 40%, #1a0808 70%, #0a0a0a 100%); background-size: cover; background-position: center; transform: scale(1.04); animation: heroZoom 10s ease-out forwards; }
+    @keyframes heroZoom { from { transform: scale(1.04); } to { transform: scale(1); } }
+    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(8,8,8,0.2) 0%, rgba(8,8,8,0.1) 40%, rgba(8,8,8,0.7) 80%, rgba(8,8,8,1) 100%); }
+    .hero-label { position: relative; z-index: 2; text-align: center; padding-bottom: 48px; animation: fadeUp 1s 0.4s ease both; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    .hero-label h1 { font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 0.72rem; letter-spacing: 0.4em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 8px; }
+    .hero-label p { font-family: 'Cormorant Garant', serif; font-size: 1.5rem; font-weight: 300; font-style: italic; color: rgba(255,255,255,0.75); }
+    .hero-rule { width: 36px; height: 2px; background: var(--red); margin: 12px auto; }
 
-    /* Car image — user replaces this URL with their own photo */
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(to bottom,
-          rgba(8,8,8,0.3) 0%,
-          rgba(8,8,8,0.1) 40%,
-          rgba(8,8,8,0.6) 75%,
-          rgba(8,8,8,1)   100%),
-        url('images/hero.jpg') center center / cover no-repeat;
-      transform: scale(1.04);
-      animation: heroZoom 12s ease-out forwards;
-    }
+    /* Hero nav */
+    .hero-nav { position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%); z-index: 2; display: flex; gap: 0; }
+    .hero-nav a { font-family: 'Rajdhani', sans-serif; font-size: 0.65rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.4); text-decoration: none; padding: 10px 18px; transition: color 0.25s; border-bottom: 1px solid transparent; }
+    .hero-nav a:hover { color: rgba(255,255,255,0.85); border-bottom-color: var(--red); }
 
-    /* Fallback gradient if no image */
-    .hero-bg.no-image {
-      background:
-        linear-gradient(135deg, #0a0a0a 0%, #0f1a2e 40%, #1a0808 70%, #0a0a0a 100%);
-    }
+    /* Page content */
+    .page-content { max-width: 760px; width: 90%; margin: 0 auto 120px; padding-top: 70px; animation: fadeUp 0.8s 0.2s ease both; }
+    h2 { font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: 1rem; letter-spacing: 0.18em; text-transform: uppercase; color: #fff; margin-bottom: 2rem; text-align: center; }
+    h2.section-title { position: relative; padding-bottom: 18px; margin-bottom: 40px; }
+    h2.section-title::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 36px; height: 2px; background: var(--red); }
+    h3 { font-family: 'Rajdhani', sans-serif; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--blue-bright); margin-top: 50px; margin-bottom: 18px; position: relative; padding-left: 14px; }
+    h3::before { content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 3px; height: 100%; background: var(--blue-bright); border-radius: 2px; }
+    p { margin-bottom: 1.6rem; font-weight: 300; color: var(--text); }
+    strong { font-weight: 600; color: #fff; }
+    a { color: var(--blue-bright); text-decoration: none; transition: color 0.2s; }
+    a:hover { color: var(--red-bright); }
 
-    @keyframes heroZoom {
-      from { transform: scale(1.04); }
-      to   { transform: scale(1); }
-    }
+    /* Meta */
+    .meta { font-family: 'Rajdhani', sans-serif; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); text-align: center; margin-bottom: 44px; }
 
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      text-align: center;
-      animation: heroFade 1.2s 0.3s ease both;
-    }
+    /* Disclaimer */
+    .disclaimer { font-size: 0.85rem; font-style: italic; color: var(--muted); border-left: 2px solid var(--m-blue); padding: 12px 18px; margin-bottom: 44px; background: rgba(28,95,168,0.04); line-height: 1.6; }
 
-    @keyframes heroFade {
-      from { opacity: 0; transform: translateY(24px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
+    /* Spec list */
+    .car-specs { list-style: none; padding: 0; }
+    .car-specs li { display: flex; align-items: flex-start; gap: 14px; padding: 15px 0; border-bottom: 1px solid var(--border); font-size: 1rem; font-weight: 300; line-height: 1.6; }
+    .car-specs li::before { content: '—'; color: var(--red); flex-shrink: 0; }
+    .car-specs li:last-child { border-bottom: none; }
 
-    /* Big center badge on hero */
-    .hero-badge {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      margin-bottom: 20px;
-    }
+    /* Chassis age */
+    #ageStory { display: block; text-align: center; font-family: 'Rajdhani', sans-serif; font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--dim); margin-bottom: 44px; line-height: 2; }
+    #ageStory em { display: block; color: var(--red); font-style: normal; letter-spacing: 0.3em; font-size: 0.65rem; margin-top: 6px; }
 
-    .hero-badge .stripes {
-      display: flex;
-      gap: 3px;
-      filter: drop-shadow(0 0 16px rgba(28,95,168,0.7));
-    }
+    /* Maintenance list */
+    .maintenance-list { list-style: none; padding: 0; }
+    .maintenance-list li { border-bottom: 1px solid var(--border); }
+    .maintenance-list li:first-child { border-top: 1px solid var(--border); }
+    .maintenance-list li a { display: flex; align-items: center; justify-content: space-between; padding: 22px 4px; color: var(--text); text-decoration: none; font-family: 'Rajdhani', sans-serif; font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; transition: all 0.2s ease; gap: 20px; }
+    .maintenance-list li a:hover { color: #fff; padding-left: 10px; }
+    .maintenance-list li a:hover .maint-arrow { transform: translateX(4px); color: var(--red-bright); }
+    .maint-title { flex: 1; }
+    .maint-date { font-size: 0.68rem; letter-spacing: 0.1em; color: var(--muted); white-space: nowrap; }
+    .maint-arrow { color: var(--muted); transition: transform 0.2s, color 0.2s; }
 
-    .hero-badge .stripe {
-      width: 8px;
-      height: 62px;
-      border-radius: 1px;
-    }
+    /* Build journal */
+    .journal-list { list-style: none; padding: 0; }
+    .journal-list li { border-bottom: 1px solid var(--border); }
+    .journal-list li:first-child { border-top: 1px solid var(--border); }
+    .journal-list li a { display: flex; align-items: center; justify-content: space-between; padding: 20px 4px; color: var(--dim); font-family: 'Rajdhani', sans-serif; font-size: 0.82rem; letter-spacing: 0.07em; text-transform: uppercase; text-decoration: none; transition: all 0.2s; }
+    .journal-list li a:hover { color: #fff; padding-left: 8px; }
+    .journal-list li a::after { content: '→'; color: var(--muted); transition: transform 0.2s, color 0.2s; }
+    .journal-list li a:hover::after { transform: translateX(4px); color: var(--red-bright); }
 
-    .hero-badge .stripe.blue     { background: var(--m-blue); }
-    .hero-badge .stripe.darkblue { background: var(--m-dark); }
-    .hero-badge .stripe.red      { background: var(--m-red); }
+    /* Tool list */
+    .tool-category { margin-bottom: 28px; }
+    .tool-category > strong { display: block; font-family: 'Rajdhani', sans-serif; font-size: 0.65rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+    .tool-category ul { list-style: none; padding: 0; }
+    .tool-category ul li { padding: 8px 0 8px 16px; border-left: 2px solid var(--border); margin-bottom: 6px; font-size: 1rem; font-weight: 300; line-height: 1.5; }
 
-    .hero-badge .badge-text {
-      display: flex;
-      align-items: baseline;
-      filter: drop-shadow(0 0 30px rgba(192,57,43,0.5));
-    }
+    /* Procedure */
+    ol.procedure { list-style: none; padding: 0; counter-reset: step; }
+    ol.procedure li { counter-increment: step; display: flex; gap: 22px; align-items: flex-start; margin-bottom: 22px; padding-bottom: 22px; border-bottom: 1px solid var(--border); }
+    ol.procedure li:last-child { border-bottom: none; }
+    ol.procedure li::before { content: counter(step, decimal-leading-zero); font-family: 'Orbitron', sans-serif; font-size: 0.6rem; font-weight: 700; color: var(--red); flex-shrink: 0; padding-top: 5px; min-width: 28px; }
 
-    .hero-badge .m-logo,
-    .hero-badge .three {
-      font-family: 'Orbitron', sans-serif;
-      font-weight: 900;
-      font-size: 5.5rem;
-      color: #fff;
-      text-shadow: 0 0 60px rgba(255,255,255,0.15), 0 4px 12px rgba(0,0,0,0.9);
-    }
+    /* Image blocks */
+    .img-block { margin: 44px 0; }
+    .img-block img { width: 100%; display: block; border: 1px solid var(--border); }
+    .img-block figcaption { font-family: 'Rajdhani', sans-serif; font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-top: 10px; text-align: center; }
+    .img-placeholder { width: 100%; height: 220px; background: #111; border: 1px dashed var(--border); display: flex; align-items: center; justify-content: center; color: var(--muted); font-family: 'Rajdhani', sans-serif; font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; }
 
-    .hero-tagline {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 0.72rem;
-      letter-spacing: 0.42em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.5);
-      margin-bottom: 10px;
-    }
+    /* Rule */
+    .rule { width: 40px; height: 2px; background: var(--red); border: none; margin: 48px auto; }
 
-    .hero-title {
-      font-family: 'Cormorant Garant', serif;
-      font-size: 1.1rem;
-      font-weight: 300;
-      font-style: italic;
-      color: rgba(255,255,255,0.6);
-      letter-spacing: 0.05em;
-    }
+    /* Footer */
+    footer { border-top: 1px solid var(--border); padding: 32px 20px; text-align: center; font-family: 'Rajdhani', sans-serif; font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); }
 
-    .hero-scroll-hint {
-      position: absolute;
-      bottom: 36px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 2;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-      animation: heroFade 1.2s 1.2s ease both;
-    }
-
-    .hero-scroll-hint span {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 0.6rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-
-    .scroll-line {
-      width: 1px;
-      height: 40px;
-      background: linear-gradient(to bottom, var(--red), transparent);
-      animation: scrollPulse 2s ease-in-out infinite;
-    }
-
-    @keyframes scrollPulse {
-      0%, 100% { opacity: 0.3; transform: scaleY(1); }
-      50%       { opacity: 1;   transform: scaleY(0.7); }
-    }
-
-    /* ─── INLINE NAV (in hero, shown before sticky kicks in) ─── */
-    .hero-nav {
-      position: absolute;
-      bottom: 100px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 2;
-      display: flex;
-      gap: 0;
-      animation: heroFade 1.2s 0.8s ease both;
-    }
-
-    .hero-nav a {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 0.68rem;
-      font-weight: 600;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.45);
-      text-decoration: none;
-      padding: 12px 20px;
-      transition: color 0.25s;
-      border-bottom: 1px solid transparent;
-    }
-
-    .hero-nav a:hover {
-      color: rgba(255,255,255,0.9);
-      border-bottom-color: var(--red);
-    }
-
-    /* ─── MAIN CONTENT ─── */
-    main {
-      position: relative;
-      z-index: 1;
-      max-width: 760px;
-      width: 90%;
-      margin: 0 auto 120px;
-      padding-top: 80px;
-    }
-
-    main p {
-      margin-bottom: 1.8rem;
-      font-weight: 300;
-      color: var(--text);
-    }
-
-    .rule {
-      width: 40px;
-      height: 2px;
-      background: var(--red);
-      border: none;
-      margin: 48px auto;
-    }
-
-    h2 {
-      font-family: 'Orbitron', sans-serif;
-      font-weight: 700;
-      font-size: 1rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: #fff;
-      margin-bottom: 2rem;
-      text-align: center;
-    }
-
-    h2.section-title {
-      position: relative;
-      padding-bottom: 18px;
-      margin-bottom: 40px;
-    }
-
-    h2.section-title::after {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 50%;
-      transform: translateX(-50%);
-      width: 36px; height: 2px;
-      background: var(--red);
-    }
-
-    /* ─── FOOTER ─── */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 32px 20px;
-      text-align: center;
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 0.62rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-
-    /* ─── RESPONSIVE ─── */
     @media (max-width: 600px) {
-      .hero-badge .m-logo,
-      .hero-badge .three { font-size: 3.8rem; }
-      .hero-badge .stripe { height: 44px; width: 6px; }
+      .fixed-badge .m-logo, .fixed-badge .three { font-size: 1.2rem; }
       .sticky-nav a { padding: 18px 12px; font-size: 0.62rem; }
+      .hero { height: 50vh; }
+      .maintenance-list li a { flex-direction: column; align-items: flex-start; gap: 4px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Fixed top-left badge -->
-  <div class="fixed-badge" id="fixedBadge">
-    <div class="stripes">
-      <div class="stripe blue"></div>
-      <div class="stripe darkblue"></div>
-      <div class="stripe red"></div>
-    </div>
-    <div class="badge-text">
-      <span class="m-logo">M</span>
-      <span class="three">3</span>
-    </div>
+  <div class="fixed-badge">
+    <div class="stripes"><div class="stripe blue"></div><div class="stripe darkblue"></div><div class="stripe red"></div></div>
+    <div class="badge-text"><span class="m-logo">M</span><span class="three">3</span></div>
   </div>
 
-  <!-- Sticky nav -->
   <nav class="sticky-nav" id="stickyNav">
-    <a href="index.html" class="active">Home</a>
+    <a href="index.html">Home</a>
     <a href="about.html">About</a>
     <a href="build-journal.html">Build Journal</a>
-    <a href="maintenance.html">Maintenance</a>
+    <a href="maintenance.html" class="active">Maintenance</a>
   </nav>
 
-  <!-- Hero -->
   <section class="hero">
     <div class="hero-bg" id="heroBg"></div>
-
-    <div class="hero-content">
-      <p class="hero-tagline">E36 · 1998 · Alpine White · S52</p>
-      <div class="hero-badge">
-        <div class="stripes">
-          <div class="stripe blue"></div>
-          <div class="stripe darkblue"></div>
-          <div class="stripe red"></div>
-        </div>
-        <div class="badge-text">
-          <span class="m-logo">M</span>
-          <span class="three">3</span>
-        </div>
-      </div>
-      <p class="hero-title">166,000 miles and still pulling.</p>
+    <div class="hero-overlay"></div>
+    <div class="hero-label">
+      <h1>Maintenance</h1>
+      <div class="hero-rule"></div>
+      <p>Every job. Every mile.</p>
     </div>
-
     <div class="hero-nav">
       <a href="index.html">Home</a>
       <a href="about.html">About</a>
       <a href="build-journal.html">Build Journal</a>
       <a href="maintenance.html">Maintenance</a>
     </div>
-
-    <div class="hero-scroll-hint">
-      <span>Scroll</span>
-      <div class="scroll-line"></div>
-    </div>
   </section>
 
-  <!-- Content -->
-  <main>
-    <p style="text-align:center; font-size:1.15rem;">
-      My account of the maintenance performed on my 1998 M3/4/5.<br>
-      Yes, it has four doors. No, it's not a family car.
-    </p>
+  <div class="page-content">
+    <h2 class="section-title">Maintenance Schedule</h2>
+    <ul class="maintenance-list">
+      <li>
+        <a href="spark-plugs.html">
+          <span class="maint-title">Spark Plug Replacement</span>
+          <span class="maint-date">Mar 12, 2026 &nbsp;·&nbsp; 166,362 mi</span>
+          <span class="maint-arrow">→</span>
+        </a>
+      </li>
+      <li>
+        <a href="clear-coat.html">
+          <span class="maint-title">Clear Coat Repair</span>
+          <span class="maint-date">Mar 25, 2026 &nbsp;·&nbsp; 166,410 mi</span>
+          <span class="maint-arrow">→</span>
+        </a>
+      </li>
+    </ul>
+  </div>
 
-    <hr class="rule">
-
-    <p>
-      In 1995, after retiring the E34 M5, BMW faced a gap in their performance executive lineup.
-      To bridge the space between the E34 M5 and the incoming E39, BMW needed something capable of
-      filling those shoes while restoring the reputation of the ///M division.
-    </p>
-    <p>
-      Despite heavy investment in the US during the 1980s, the E30 M3 failed to capture the
-      American market. Consequently, BMW detuned the North American E36 M3 — reasoning that if
-      it fell short again, the damage would be contained.
-    </p>
-    <p style="text-align:center;">
-      As a result, the suits in Munich gave the E36 M3 two extra doors.<br>
-      To their surprise, it did better than expected.
-    </p>
-  </main>
-
-  <footer>
-    &copy; E36 M3 Journey &nbsp;·&nbsp; Greer, SC · 1997
-  </footer>
+  <footer>&copy; E36 M3 Journey &nbsp;·&nbsp; Greer, SC · 1997</footer>
 
   <script>
-    const nav = document.getElementById('stickyNav');
-    const badge = document.getElementById('fixedBadge');
-    const heroHeight = document.querySelector('.hero').offsetHeight;
-
-    window.addEventListener('scroll', () => {
-      const scrolled = window.scrollY;
-      // Show sticky nav after scrolling past ~60% of hero
-      if (scrolled > heroHeight * 0.6) {
-        nav.classList.add('visible');
-      } else {
-        nav.classList.remove('visible');
-      }
+    const nav = document.getElementById("stickyNav");
+    window.addEventListener("scroll", () => {
+      nav.classList.toggle("visible", window.scrollY > document.querySelector(".hero").offsetHeight * 0.5);
     });
-
-    // Try to detect if hero.jpg exists; if not, use gradient fallback
-    const heroBg = document.getElementById('heroBg');
-    const testImg = new Image();
-    testImg.onload = () => {
-      heroBg.style.backgroundImage =
-        'linear-gradient(to bottom, rgba(8,8,8,0.3) 0%, rgba(8,8,8,0.1) 40%, rgba(8,8,8,0.6) 75%, rgba(8,8,8,1) 100%), url("images/hero.jpg")';
-    };
-    testImg.onerror = () => {
-      heroBg.classList.add('no-image');
-    };
-    testImg.src = 'images/hero.jpg';
+    const heroBg = document.getElementById("heroBg");
+    const t = new Image();
+    t.onload = () => { heroBg.style.backgroundImage = 'linear-gradient(to bottom, rgba(8,8,8,0.25) 0%, rgba(8,8,8,0.05) 40%, rgba(8,8,8,0.65) 78%, rgba(8,8,8,1) 100%), url("images/hero.jpg")'; };
+    t.src = "images/hero.jpg";
   </script>
-
 </body>
 </html>
