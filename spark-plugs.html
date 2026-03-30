@@ -3,295 +3,267 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Spark Plug R&R @ 166,362 MILES</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css">
+  <title>Spark Plug R&R — E36 M3</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Cormorant+Garant:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Rajdhani:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
-    body {
-      background-color: #121212;
-      color: #ffffff;
-      margin: 0;
-      padding: 0;
-      overflow-x: hidden;
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --black:      #080808;
+      --surface:    #111;
+      --border:     #1e1e1e;
+      --text:       #e0e0e0;
+      --muted:      #666;
+      --dim:        #999;
+      --red:        #c0392b;
+      --red-bright: #e74c3c;
+      --blue:       #1c5fa8;
+      --blue-bright:#3498db;
+      --m-blue:     #1c5fa8;
+      --m-dark:     #0a3a7a;
+      --m-red:      #c0392b;
     }
+    html { scroll-behavior: smooth; }
+    body { background: var(--black); color: var(--text); font-family: 'Cormorant Garant', serif; font-size: 1.1rem; line-height: 1.8; overflow-x: hidden; }
 
-    .badge-container {
-      position: relative !important;
-      display: flex !important;
-      flex-direction: row !important;
-      align-items: center !important;
-      justify-content: center !important;
-      margin: 60px auto 20px auto !important;
-    }
+    /* Fixed badge */
+    .fixed-badge { position: fixed; top: 20px; left: 28px; z-index: 1000; display: flex; align-items: center; gap: 6px; }
+    .fixed-badge .stripes { display: flex; gap: 2px; }
+    .fixed-badge .stripe { width: 4px; height: 28px; border-radius: 1px; }
+    .fixed-badge .stripe.blue     { background: var(--m-blue); }
+    .fixed-badge .stripe.darkblue { background: var(--m-dark); }
+    .fixed-badge .stripe.red      { background: var(--m-red); }
+    .fixed-badge .badge-text { display: flex; align-items: baseline; filter: drop-shadow(0 0 12px rgba(192,57,43,0.4)); }
+    .fixed-badge .m-logo, .fixed-badge .three { font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 1.6rem; color: #fff; letter-spacing: -0.02em; text-shadow: 0 0 20px rgba(255,255,255,0.2), 0 2px 6px rgba(0,0,0,0.9); }
 
-    .stripes {
-      display: flex !important;
-      margin-right: -15px !important;
-      z-index: 1;
-    }
+    /* Sticky nav */
+    .sticky-nav { position: fixed; top: 0; left: 0; width: 100%; z-index: 999; background: rgba(8,8,8,0.95); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); display: flex; justify-content: center; padding: 0 20px; transform: translateY(-100%); transition: transform 0.4s cubic-bezier(0.4,0,0.2,1); }
+    .sticky-nav.visible { transform: translateY(0); }
+    .sticky-nav::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 2px; background: linear-gradient(90deg, var(--m-blue) 0%, var(--m-dark) 33%, var(--m-red) 66%, transparent 100%); }
+    .sticky-nav a { font-family: 'Rajdhani', sans-serif; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--dim); text-decoration: none; padding: 20px 24px; position: relative; transition: color 0.25s; }
+    .sticky-nav a:first-child { margin-left: 80px; }
+    .sticky-nav a::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 0; height: 2px; background: var(--red-bright); transition: width 0.3s; }
+    .sticky-nav a:hover { color: #fff; }
+    .sticky-nav a:hover::after { width: 60%; }
+    .sticky-nav a.active { color: #fff; }
+    .sticky-nav a.active::after { width: 60%; background: var(--red); }
 
-    .badge-text { position: relative; z-index: 2; }
-    .badge-label { display: none !important; }
+    /* Hero banner */
+    .hero { position: relative; width: 100%; height: 65vh; min-height: 420px; display: flex; align-items: flex-end; justify-content: center; overflow: hidden; }
+    .hero-bg { position: absolute; inset: 0; background: linear-gradient(135deg, #0a0a0a 0%, #0f1a2e 40%, #1a0808 70%, #0a0a0a 100%); background-size: cover; background-position: center; transform: scale(1.04); animation: heroZoom 10s ease-out forwards; }
+    @keyframes heroZoom { from { transform: scale(1.04); } to { transform: scale(1); } }
+    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(8,8,8,0.2) 0%, rgba(8,8,8,0.1) 40%, rgba(8,8,8,0.7) 80%, rgba(8,8,8,1) 100%); }
+    .hero-label { position: relative; z-index: 2; text-align: center; padding-bottom: 48px; animation: fadeUp 1s 0.4s ease both; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    .hero-label h1 { font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 0.72rem; letter-spacing: 0.4em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 8px; }
+    .hero-label p { font-family: 'Cormorant Garant', serif; font-size: 1.5rem; font-weight: 300; font-style: italic; color: rgba(255,255,255,0.75); }
+    .hero-rule { width: 36px; height: 2px; background: var(--red); margin: 12px auto; }
 
-    nav { text-align: center; margin-bottom: 60px; }
+    /* Hero nav */
+    .hero-nav { position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%); z-index: 2; display: flex; gap: 0; }
+    .hero-nav a { font-family: 'Rajdhani', sans-serif; font-size: 0.65rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.4); text-decoration: none; padding: 10px 18px; transition: color 0.25s; border-bottom: 1px solid transparent; }
+    .hero-nav a:hover { color: rgba(255,255,255,0.85); border-bottom-color: var(--red); }
 
-    nav a {
-      color: #ffffff;
-      text-decoration: none;
-      margin: 0 15px;
-      transition: 0.3s;
-    }
+    /* Page content */
+    .page-content { max-width: 760px; width: 90%; margin: 0 auto 120px; padding-top: 70px; animation: fadeUp 0.8s 0.2s ease both; }
+    h2 { font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: 1rem; letter-spacing: 0.18em; text-transform: uppercase; color: #fff; margin-bottom: 2rem; text-align: center; }
+    h2.section-title { position: relative; padding-bottom: 18px; margin-bottom: 40px; }
+    h2.section-title::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 36px; height: 2px; background: var(--red); }
+    h3 { font-family: 'Rajdhani', sans-serif; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--blue-bright); margin-top: 50px; margin-bottom: 18px; position: relative; padding-left: 14px; }
+    h3::before { content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 3px; height: 100%; background: var(--blue-bright); border-radius: 2px; }
+    p { margin-bottom: 1.6rem; font-weight: 300; color: var(--text); }
+    strong { font-weight: 600; color: #fff; }
+    a { color: var(--blue-bright); text-decoration: none; transition: color 0.2s; }
+    a:hover { color: var(--red-bright); }
 
-    nav a:hover { color: #3498db; }
+    /* Meta */
+    .meta { font-family: 'Rajdhani', sans-serif; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); text-align: center; margin-bottom: 44px; }
 
-    main {
-      font-family: 'Libre Baskerville', serif;
-      max-width: 700px;
-      width: 90%;
-      margin: 0 auto 100px auto;
-      line-height: 1.8;
-      text-align: left;
-    }
+    /* Disclaimer */
+    .disclaimer { font-size: 0.85rem; font-style: italic; color: var(--muted); border-left: 2px solid var(--m-blue); padding: 12px 18px; margin-bottom: 44px; background: rgba(28,95,168,0.04); line-height: 1.6; }
 
-    h2 {
-      font-family: 'Orbitron', sans-serif;
-      text-transform: uppercase;
-      text-align: center;
-      margin-bottom: 10px;
-    }
+    /* Spec list */
+    .car-specs { list-style: none; padding: 0; }
+    .car-specs li { display: flex; align-items: flex-start; gap: 14px; padding: 15px 0; border-bottom: 1px solid var(--border); font-size: 1rem; font-weight: 300; line-height: 1.6; }
+    .car-specs li::before { content: '—'; color: var(--red); flex-shrink: 0; }
+    .car-specs li:last-child { border-bottom: none; }
 
-    .meta {
-      text-align: center;
-      font-size: 0.9rem;
-      color: #aaaaaa;
-      margin-bottom: 40px;
-      letter-spacing: 0.05em;
-    }
+    /* Chassis age */
+    #ageStory { display: block; text-align: center; font-family: 'Rajdhani', sans-serif; font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--dim); margin-bottom: 44px; line-height: 2; }
+    #ageStory em { display: block; color: var(--red); font-style: normal; letter-spacing: 0.3em; font-size: 0.65rem; margin-top: 6px; }
 
-    .disclaimer {
-      font-style: italic;
-      font-size: 0.85rem;
-      color: #aaaaaa;
-      border-left: 3px solid #3498db;
-      padding-left: 14px;
-      margin-bottom: 40px;
-    }
+    /* Maintenance list */
+    .maintenance-list { list-style: none; padding: 0; }
+    .maintenance-list li { border-bottom: 1px solid var(--border); }
+    .maintenance-list li:first-child { border-top: 1px solid var(--border); }
+    .maintenance-list li a { display: flex; align-items: center; justify-content: space-between; padding: 22px 4px; color: var(--text); text-decoration: none; font-family: 'Rajdhani', sans-serif; font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; transition: all 0.2s ease; gap: 20px; }
+    .maintenance-list li a:hover { color: #fff; padding-left: 10px; }
+    .maintenance-list li a:hover .maint-arrow { transform: translateX(4px); color: var(--red-bright); }
+    .maint-title { flex: 1; }
+    .maint-date { font-size: 0.68rem; letter-spacing: 0.1em; color: var(--muted); white-space: nowrap; }
+    .maint-arrow { color: var(--muted); transition: transform 0.2s, color 0.2s; }
 
-    h3 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 0.85rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: #3498db;
-      margin-top: 50px;
-      margin-bottom: 16px;
-    }
+    /* Build journal */
+    .journal-list { list-style: none; padding: 0; }
+    .journal-list li { border-bottom: 1px solid var(--border); }
+    .journal-list li:first-child { border-top: 1px solid var(--border); }
+    .journal-list li a { display: flex; align-items: center; justify-content: space-between; padding: 20px 4px; color: var(--dim); font-family: 'Rajdhani', sans-serif; font-size: 0.82rem; letter-spacing: 0.07em; text-transform: uppercase; text-decoration: none; transition: all 0.2s; }
+    .journal-list li a:hover { color: #fff; padding-left: 8px; }
+    .journal-list li a::after { content: '→'; color: var(--muted); transition: transform 0.2s, color 0.2s; }
+    .journal-list li a:hover::after { transform: translateX(4px); color: var(--red-bright); }
 
     /* Tool list */
-    .tool-category {
-      margin-bottom: 24px;
-    }
+    .tool-category { margin-bottom: 28px; }
+    .tool-category > strong { display: block; font-family: 'Rajdhani', sans-serif; font-size: 0.65rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+    .tool-category ul { list-style: none; padding: 0; }
+    .tool-category ul li { padding: 8px 0 8px 16px; border-left: 2px solid var(--border); margin-bottom: 6px; font-size: 1rem; font-weight: 300; line-height: 1.5; }
 
-    .tool-category strong {
-      display: block;
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: #aaaaaa;
-      margin-bottom: 8px;
-    }
-
-    .tool-category ul {
-      list-style: disc;
-      padding-left: 20px;
-      margin: 0;
-    }
-
-    .tool-category ul li {
-      margin-bottom: 8px;
-    }
-
-    /* Numbered procedure steps */
-    ol.procedure {
-      padding-left: 22px;
-      counter-reset: step-counter;
-      list-style: none;
-    }
-
-    ol.procedure li {
-      counter-increment: step-counter;
-      position: relative;
-      padding-left: 10px;
-      margin-bottom: 18px;
-    }
-
-    ol.procedure li::before {
-      content: counter(step-counter) ".";
-      font-family: 'Orbitron', sans-serif;
-      font-size: 0.75rem;
-      color: #3498db;
-      position: absolute;
-      left: -22px;
-      top: 3px;
-    }
+    /* Procedure */
+    ol.procedure { list-style: none; padding: 0; counter-reset: step; }
+    ol.procedure li { counter-increment: step; display: flex; gap: 22px; align-items: flex-start; margin-bottom: 22px; padding-bottom: 22px; border-bottom: 1px solid var(--border); }
+    ol.procedure li:last-child { border-bottom: none; }
+    ol.procedure li::before { content: counter(step, decimal-leading-zero); font-family: 'Orbitron', sans-serif; font-size: 0.6rem; font-weight: 700; color: var(--red); flex-shrink: 0; padding-top: 5px; min-width: 28px; }
 
     /* Image blocks */
-    .img-block {
-      margin: 36px 0;
-      text-align: center;
-    }
+    .img-block { margin: 44px 0; }
+    .img-block img { width: 100%; display: block; border: 1px solid var(--border); }
+    .img-block figcaption { font-family: 'Rajdhani', sans-serif; font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-top: 10px; text-align: center; }
+    .img-placeholder { width: 100%; height: 220px; background: #111; border: 1px dashed var(--border); display: flex; align-items: center; justify-content: center; color: var(--muted); font-family: 'Rajdhani', sans-serif; font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; }
 
-    .img-block img {
-      max-width: 100%;
-      border: 1px solid #2a2a2a;
-      display: block;
-      margin: 0 auto;
-    }
+    /* Rule */
+    .rule { width: 40px; height: 2px; background: var(--red); border: none; margin: 48px auto; }
 
-    .img-block figcaption {
-      font-size: 0.8rem;
-      color: #888888;
-      margin-top: 8px;
-      font-style: italic;
-    }
+    /* Footer */
+    footer { border-top: 1px solid var(--border); padding: 32px 20px; text-align: center; font-family: 'Rajdhani', sans-serif; font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); }
 
-    /* Placeholder style for images not yet added */
-    .img-placeholder {
-      width: 100%;
-      height: 220px;
-      background-color: #1e1e1e;
-      border: 1px dashed #444444;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #555555;
-      font-size: 0.8rem;
-      font-family: 'Orbitron', sans-serif;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+    @media (max-width: 600px) {
+      .fixed-badge .m-logo, .fixed-badge .three { font-size: 1.2rem; }
+      .sticky-nav a { padding: 18px 12px; font-size: 0.62rem; }
+      .hero { height: 50vh; }
+      .maintenance-list li a { flex-direction: column; align-items: flex-start; gap: 4px; }
     }
   </style>
 </head>
 <body>
 
-  <div class="badge-container">
-    <div class="stripes">
-      <div class="stripe blue"></div>
-      <div class="stripe darkblue"></div>
-      <div class="stripe red"></div>
-    </div>
-    <div class="badge-text">
-      <span class="m-logo">M</span>
-      <span class="three">3</span>
-    </div>
+  <div class="fixed-badge">
+    <div class="stripes"><div class="stripe blue"></div><div class="stripe darkblue"></div><div class="stripe red"></div></div>
+    <div class="badge-text"><span class="m-logo">M</span><span class="three">3</span></div>
   </div>
 
-  <nav>
+  <nav class="sticky-nav" id="stickyNav">
     <a href="index.html">Home</a>
     <a href="about.html">About</a>
     <a href="build-journal.html">Build Journal</a>
-    <a href="maintenance.html">Maintenance</a>
+    <a href="maintenance.html" class="active">Maintenance</a>
   </nav>
 
-  <main>
+  <section class="hero">
+    <div class="hero-bg" id="heroBg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-label">
+      <h1>Maintenance</h1>
+      <div class="hero-rule"></div>
+      <p>Spark Plug R&R &nbsp;·&nbsp; 166,362 miles</p>
+    </div>
+    <div class="hero-nav">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="build-journal.html">Build Journal</a>
+      <a href="maintenance.html">Maintenance</a>
+    </div>
+  </section>
 
-    <h2>Spark Plug R&amp;R</h2>
+  <div class="page-content">
+    <h2 class="section-title">Spark Plug R&amp;R</h2>
     <p class="meta">March 12, 2026 &nbsp;·&nbsp; 166,362 miles</p>
 
     <p class="disclaimer">
       I'm not a BMW technician. This article is provided freely for entertainment purposes only
-      and is not intended to be instructional in nature. Use of the information in this article
-      is entirely at your own risk.
+      and is not intended to be instructional in nature. Use of the information here is entirely
+      at your own risk.
     </p>
 
-    <!-- Overview -->
     <p>
       Swapped out the old set of NGK BKR6EQUP (Laser Platinum) and replaced with the same type.
-      The S52 was in need of new spark plugs — during cold starts I would experience symptoms of
-      misfiring. Though spark plugs may not have been the sole culprit, it's always good to do
-      some preventative maintenance before it turns into a headache.
+      The S52 was showing symptoms of misfiring on cold starts — though spark plugs may not have
+      been the sole culprit, preventative maintenance made sense before it became a real headache.
     </p>
     <p>
-      In the end, the S52 idles noticeably smoother than before and no longer sounds like it woke
-      up with a sore throat on a cold start. Job well done.
+      In the end, the S52 idles noticeably smoother and no longer sounds like it woke up with a
+      sore throat on a cold start. Job well done.
     </p>
 
-    <!-- Photo: before/overview -->
     <figure class="img-block">
-      <!-- Replace the div below with: <img src="images/spark-plugs-before.jpg" alt="Old spark plugs removed"> -->
       <div class="img-placeholder">Image — old plugs / engine bay overview</div>
-      <figcaption>Old NGK BKR6EQUP set pulled from the S52.</figcaption>
+      <figcaption>Old NGK BKR6EQUP set pulled from the S52. Replace div with: &lt;img src="images/spark-plugs-before.jpg"&gt;</figcaption>
     </figure>
 
-    <!-- Prerequisites -->
     <h3>Prerequisites</h3>
-    <p>
-      Replacing spark plugs is one of the most rudimentary jobs any home mechanic can tackle.
-      As someone who had never touched the inside of an engine bay before this, I can
-      retrospectively confirm what the internet says: this job shouldn't be feared by the DIYer.
-    </p>
+    <p>Replacing spark plugs is one of the most rudimentary jobs a home mechanic can take on. Having never touched an engine bay before this, I can confirm: don't fear it.</p>
 
     <div class="tool-category">
       <strong>Ratchets</strong>
       <ul>
-        <li><strong>3/8" ratchet</strong> — for removing valve cover nuts and coil pack bolts.</li>
-        <li><strong>1/2" ratchet</strong> — optional, but recommended for extracting the plugs. Less force required than a 3/8".</li>
-        <li><strong>Torque wrench</strong> — must reach 18 ft-lbs comfortably (not at either extreme of the range). 18 ft-lbs is the torque spec for all six plugs.</li>
+        <li><strong>3/8" ratchet</strong> — valve cover nuts and coil pack bolts.</li>
+        <li><strong>1/2" ratchet</strong> — optional but recommended for plug extraction. Easier on the hands.</li>
+        <li><strong>Torque wrench</strong> — must reach 18 ft-lbs comfortably. That's the spec for all six plugs.</li>
       </ul>
     </div>
-
     <div class="tool-category">
       <strong>Sockets &amp; Extensions</strong>
       <ul>
         <li><strong>10mm socket</strong></li>
-        <li><strong>6" extension</strong> — for 3/8" and 1/2" drives.</li>
-        <li><strong>5/8" spark plug socket</strong> — get the magnetic type so the plug doesn't drop back into the well on removal.</li>
+        <li><strong>6" extension</strong> — for both 3/8" and 1/2" drives.</li>
+        <li><strong>5/8" spark plug socket</strong> — magnetic type strongly recommended.</li>
       </ul>
     </div>
-
     <div class="tool-category">
       <strong>Parts</strong>
       <ul>
-        <li>6x NGK BKR6EQUP Laser Platinum spark plugs (or your preferred OEM+ equivalent).</li>
+        <li>6x NGK BKR6EQUP Laser Platinum spark plugs.</li>
       </ul>
     </div>
 
-    <!-- Photo: tools laid out -->
     <figure class="img-block">
-      <!-- Replace the div below with: <img src="images/spark-plugs-tools.jpg" alt="Tools laid out"> -->
       <div class="img-placeholder">Image — tools laid out</div>
       <figcaption>Everything needed for the job.</figcaption>
     </figure>
 
-    <!-- Procedure -->
     <h3>Procedure</h3>
-
     <ol class="procedure">
-      <li>Position your nail on the underside of the plastic valve cover nut cap. Flick it off with your other hand placed on top to stop it from flying. Repeat for the second cap.</li>
+      <li>Position your nail on the underside of the plastic valve cover nut cap and flick it off, hand on top to stop it flying. Repeat for the second cap.</li>
       <li>Using a 10mm socket, unscrew the two nuts.</li>
       <li>Unscrew the oil cap. <strong>Keep nothing near the open reservoir.</strong></li>
       <li>Remove the valve cover, then screw the oil cap back on immediately.</li>
-      <li>You should now see a neat row of six ignition coil packs connected by metal snap-on locks.</li>
-      <li>Using the 10mm again, turn counterclockwise on each coil pack bolt. Note the orientation of the electrical ground strap on cylinders 1 and 6 — the thin strap sits above the coil.</li>
-      <li>Pull up on the two metal locks with two fingers. The coils will jump up, making removal easy.</li>
-      <li>You'll now see a deep well with the tip of the spark plug at the bottom. With the extension attached to your 3/8" or 1/2" and the 5/8" spark plug socket, reach down and turn counterclockwise. <strong>Keep the ratchet flat — parallel to the engine head.</strong></li>
-      <li>Apply consistent, even pressure. If the plug still won't budge, a small shot of WD-40 can help break it loose.</li>
-      <li>Once the old plug is out, slide the new one in threads-first.</li>
-      <li>Remove the ratchet from the extension and hand-tighten the plug first. Skipping this step risks cross-threading — which means rebuilding the head.</li>
-      <li>Once the plug is snug by hand, torque to <strong>18 ft-lbs</strong>.</li>
+      <li>You'll see a row of six ignition coil packs connected by metal snap-on locks.</li>
+      <li>Using the 10mm, turn counterclockwise on each coil pack bolt. Note the orientation of the ground strap on cylinders 1 and 6 — the thin strap sits above the coil.</li>
+      <li>Pull up on the two metal locks with two fingers. The coils will jump up for easy removal.</li>
+      <li>Deep well ahead — spark plug tip visible at the bottom. Extension on your ratchet, 5/8" plug socket attached, reach down and turn counterclockwise. <strong>Keep the ratchet flat, parallel to the engine head.</strong></li>
+      <li>Apply consistent, even pressure. If the plug won't budge, a short hit of WD-40 helps break it loose.</li>
+      <li>Old plug out, new one in — threads first.</li>
+      <li>Remove the ratchet from the extension and hand-tighten first. Skipping this risks cross-threading, which means rebuilding the head.</li>
+      <li>Once snug by hand, torque to <strong>18 ft-lbs</strong>.</li>
       <li>Repeat for all six cylinders.</li>
       <li>Reinstall coils, nuts, and valve cover in reverse order.</li>
     </ol>
 
-    <!-- Photo: after -->
     <figure class="img-block">
-      <!-- Replace the div below with: <img src="images/spark-plugs-after.jpg" alt="New plugs installed"> -->
-      <div class="img-placeholder">Image — new plugs installed / finished engine bay</div>
+      <div class="img-placeholder">Image — new plugs installed</div>
       <figcaption>New set seated and torqued. Clean.</figcaption>
     </figure>
+  </div>
 
-  </main>
+  <footer>&copy; E36 M3 Journey &nbsp;·&nbsp; Greer, SC · 1997</footer>
 
+  <script>
+    const nav = document.getElementById("stickyNav");
+    window.addEventListener("scroll", () => {
+      nav.classList.toggle("visible", window.scrollY > document.querySelector(".hero").offsetHeight * 0.5);
+    });
+    const heroBg = document.getElementById("heroBg");
+    const t = new Image();
+    t.onload = () => { heroBg.style.backgroundImage = 'linear-gradient(to bottom, rgba(8,8,8,0.25) 0%, rgba(8,8,8,0.05) 40%, rgba(8,8,8,0.65) 78%, rgba(8,8,8,1) 100%), url("images/hero.jpg")'; };
+    t.src = "images/hero.jpg";
+  </script>
 </body>
 </html>
