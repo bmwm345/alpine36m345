@@ -50,7 +50,6 @@
     .hero-nav a:hover { color: rgba(255,255,255,0.85); border-bottom-color: var(--red); }
 
     .gallery-section { max-width: 1100px; width: 92%; margin: 70px auto 120px; animation: fadeUp 0.8s 0.2s ease both; }
-
     .gallery-header { text-align: center; margin-bottom: 50px; }
     .gallery-header h2 { font-family: 'Orbitron', sans-serif; font-size: 1rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #fff; margin-bottom: 16px; }
     .gallery-header-rule { width: 36px; height: 2px; background: var(--red); margin: 16px auto; }
@@ -129,109 +128,40 @@
 
     <div class="masonry" id="masonryGrid">
 
-      <!-- ============================================================
-           HOW TO ADD A PHOTO — repeat this block for every picture:
-
-           1. Change the src to your filename, e.g.:
-              src="images/gallery/front.jpg"
-
-           2. Change data-category to one of:
-              exterior | interior | engine | detail
-
-           3. Change the caption text (shows on hover):
-              <p>YOUR TITLE</p>
-              <span>your subtitle</span>
-
-           That's it. Copy the whole block to add more photos.
-           ============================================================ -->
-
-      <!-- PHOTO 1 -->
-      <div class="photo-card" data-category="exterior" data-caption="Front three-quarter">
-        <img src="images/gallery/photo-01.jpg" alt="Front three-quarter">
+      <!-- PHOTO: IMG_8060.jpeg — front quarter with G80 M3 -->
+      <div class="photo-card" data-category="exterior" data-caption="E36 meets G80">
+        <img src="images/gallery/IMG_8060.jpeg" alt="E36 M3 front quarter alongside G80 M3">
         <div class="photo-caption">
-          <p>Front three-quarter</p>
-          <span>Alpine White · S52</span>
+          <p>E36 meets G80</p>
+          <span>Two generations of M3</span>
         </div>
       </div>
 
-      <!-- PHOTO 2 -->
-      <div class="photo-card" data-category="engine" data-caption="S52B32">
-        <img src="images/gallery/photo-02.jpg" alt="Engine bay">
-        <div class="photo-caption">
-          <p>S52B32</p>
-          <span>3.2L Inline-Six</span>
-        </div>
-      </div>
-
-      <!-- PHOTO 3 -->
-      <div class="photo-card" data-category="exterior" data-caption="Rear three-quarter">
-        <img src="images/gallery/photo-03.jpg" alt="Rear three-quarter">
-        <div class="photo-caption">
-          <p>Rear three-quarter</p>
-          <span>Style 39 Sunflowers</span>
-        </div>
-      </div>
-
-      <!-- PHOTO 4 -->
-      <div class="photo-card" data-category="interior" data-caption="Driver's seat">
-        <img src="images/gallery/photo-04.jpg" alt="Driver's seat">
-        <div class="photo-caption">
-          <p>Driver's seat</p>
-          <span>Factory interior</span>
-        </div>
-      </div>
-
-      <!-- PHOTO 5 -->
-      <div class="photo-card" data-category="detail" data-caption="M badge">
-        <img src="images/gallery/photo-05.jpg" alt="M badge">
-        <div class="photo-caption">
-          <p>M badge</p>
-          <span>///M Division</span>
-        </div>
-      </div>
-
-      <!-- PHOTO 6 -->
+      <!-- PHOTO: IMG_7400.jpeg — side profile -->
       <div class="photo-card" data-category="exterior" data-caption="Side profile">
-        <img src="images/gallery/photo-06.jpg" alt="Side profile">
+        <img src="images/gallery/IMG_7400.jpeg" alt="E36 M3 side profile">
         <div class="photo-caption">
           <p>Side profile</p>
-          <span>4-door · Sedan</span>
+          <span>Alpine White · 4-door</span>
         </div>
       </div>
 
-      <!-- PHOTO 7 -->
-      <div class="photo-card" data-category="engine" data-caption="Valve cover">
-        <img src="images/gallery/photo-07.jpg" alt="Valve cover">
+      <!-- ADD YOUR NEXT PHOTO HERE — copy this block:
+
+      <div class="photo-card" data-category="exterior" data-caption="Your title">
+        <img src="images/gallery/YOUR_FILENAME.jpeg" alt="description">
         <div class="photo-caption">
-          <p>Valve cover</p>
-          <span>Post spark plug R&amp;R</span>
+          <p>Your title</p>
+          <span>Your subtitle</span>
         </div>
       </div>
 
-      <!-- PHOTO 8 -->
-      <div class="photo-card" data-category="detail" data-caption="Style 39 Sunflower">
-        <img src="images/gallery/photo-08.jpg" alt="Style 39 wheel">
-        <div class="photo-caption">
-          <p>Style 39 Sunflower</p>
-          <span>Aluminum alloy</span>
-        </div>
-      </div>
-
-      <!-- PHOTO 9 -->
-      <div class="photo-card" data-category="interior" data-caption="Instrument cluster">
-        <img src="images/gallery/photo-09.jpg" alt="Instrument cluster">
-        <div class="photo-caption">
-          <p>Instrument cluster</p>
-          <span>166,000+ miles</span>
-        </div>
-      </div>
-
-      <!-- ADD MORE PHOTOS HERE — just copy one of the blocks above -->
+      Change data-category to: exterior | interior | engine | detail
+      -->
 
     </div>
   </div>
 
-  <!-- Lightbox -->
   <div class="lightbox" id="lightbox">
     <button class="lightbox-close" id="lightboxClose">✕ Close</button>
     <img src="" alt="" id="lightboxImg">
@@ -241,13 +171,11 @@
   <footer>@s52alpine</footer>
 
   <script>
-    // Sticky nav
     const nav = document.getElementById('stickyNav');
     window.addEventListener('scroll', () => {
       nav.classList.toggle('visible', window.scrollY > document.querySelector('.hero').offsetHeight * 0.5);
     });
 
-    // Hero image
     const heroBg = document.getElementById('heroBg');
     const t = new Image();
     t.onload = () => {
@@ -255,7 +183,6 @@
     };
     t.src = 'images/hero.jpg';
 
-    // Filter tabs
     const tabs = document.querySelectorAll('.filter-tab');
     const cards = document.querySelectorAll('.photo-card');
     tabs.forEach(tab => {
@@ -269,7 +196,6 @@
       });
     });
 
-    // Lightbox
     const lightbox    = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightboxImg');
     const lightboxCap = document.getElementById('lightboxCaption');
@@ -286,10 +212,10 @@
       });
     });
 
-    document.getElementById('lightboxClose').addEventListener('click', close);
-    lightbox.addEventListener('click', e => { if (e.target === lightbox) close(); });
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
-    function close() { lightbox.classList.remove('open'); document.body.style.overflow = ''; }
+    document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+    function closeLightbox() { lightbox.classList.remove('open'); document.body.style.overflow = ''; }
   </script>
 </body>
 </html>
